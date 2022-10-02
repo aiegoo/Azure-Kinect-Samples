@@ -1,5 +1,6 @@
 ﻿class Constants
 {
+    public const string GraphApiVersion = "v2.8";
     public const float Invalid2DCoordinate = -1;
 
     public const int InvalidCalculationWindow = -1;
