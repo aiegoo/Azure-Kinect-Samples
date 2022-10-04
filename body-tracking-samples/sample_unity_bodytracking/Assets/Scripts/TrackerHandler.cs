@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using Microsoft.Azure.Kinect.BodyTracking;
+using UnityEngine.UI;
+using System;
 
 public class TrackerHandler : MonoBehaviour
 {
@@ -9,10 +11,21 @@ public class TrackerHandler : MonoBehaviour
     public Quaternion[] absoluteJointRotations = new Quaternion[(int)JointId.Count];
     public bool drawSkeletons = true;
     Quaternion Y_180_FLIP = new Quaternion(0.0f, 1.0f, 0.0f, 0.0f);
+    public JointId jointType;
+    private GameObject jointName;
+    private GameObject jointPosition;
+    private GameObject jointPrecision;
+    string jname;
+    string jposition;
+    string jprecision;
 
     // Start is called before the first frame update
     void Awake()
     {
+        jointName = GameObject.FindGameObjectWithTag("jointName");
+        jointPosition = GameObject.FindGameObjectWithTag("jointPosition");
+        jointPrecision = GameObject.FindGameObjectWithTag("jointPrecision");
+
         parentJointMap = new Dictionary<JointId, JointId>();
 
         // pelvis has no parent so set to count
@@ -109,6 +122,25 @@ public class TrackerHandler : MonoBehaviour
         // render the closest body
         Body skeleton = trackerFrameData.Bodies[closestBody];
         renderSkeleton(skeleton, 0);
+        jname = string.Empty;
+        jposition = string.Empty;
+        jprecision = string.Empty;
+
+        foreach (var j in Enum.GetNames(typeof(JointId)))
+        {
+            jname += j + '\n';
+            JointId v;
+            Enum.TryParse<JointId>(j,out v);
+            jposition += skeleton.JointPositions3D[(int)v].ToString() + '\n';
+            jprecision += skeleton.JointPrecisions[(int)v].ToString() + '\n';
+        }
+        jointName.GetComponent<Text>().text = jname;
+        jointPosition.GetComponent<Text>().text = jposition;
+        jointPrecision.GetComponent<Text>().text = jprecision;
+        //jointName.GetComponent<Text>().text = jointType.ToString();
+        //jointPosition.GetComponent<Text>().text = ($"Selected Joint Position is: {skeleton.JointPositions3D[(int)jointType]}");
+        //jointPrecision.GetComponent<Text>().text = ($"Selected Joint Precision is: {skeleton.JointPrecisions[(int)jointType]}");
+
     }
 
     int findIndexFromId(BackgroundData frameData, int id)

@@ -73,6 +73,8 @@ public class SkeletalTrackingProvider : BackgroundDataProvider
                                     currentFrameData.Bodies[i].CopyFromBodyTrackingSdk(frame.GetBody(i), deviceCalibration);
                                 }
 
+                                //this will give you joint precision based on index you provide
+                                //var p = currentFrameData.Bodies[0].JointPrecisions[index];
                                 // Store depth image.
                                 Capture bodyFrameCapture = frame.Capture;
                                 Image depthImage = bodyFrameCapture.Depth;
