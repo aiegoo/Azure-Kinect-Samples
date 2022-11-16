@@ -356,6 +356,7 @@ Assets/AssetStoreTools*
 Logs/
 body-tracking-samples/sample_unity_bodytracking/Assets/Plugins
 body-tracking-samples/sample_unity_bodytracking/*.dll
+body-tracking-samples/sample_unity_bodytracking/Assets/_KinectAssets/AzureKinect/SDK/Kinect4AzureSDK/Plugins/*.dll
 body-tracking-samples/sample_unity_bodytracking/*onnx
 
 
