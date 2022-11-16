@@ -43,7 +43,7 @@ public class SkeletalTrackingProvider : BackgroundDataProvider
 
                 var deviceCalibration = device.GetCalibration();
 
-                using (Tracker tracker = Tracker.Create(deviceCalibration, new TrackerConfiguration() { ProcessingMode = TrackerProcessingMode.Gpu, SensorOrientation = SensorOrientation.Default }))
+                using (Tracker tracker = Tracker.Create(deviceCalibration, new TrackerConfiguration() { ProcessingMode = TrackerProcessingMode.Cuda, SensorOrientation = SensorOrientation.Default }))
                 {
                     UnityEngine.Debug.Log("Body tracker created.");
                     while (!token.IsCancellationRequested)
@@ -73,6 +73,8 @@ public class SkeletalTrackingProvider : BackgroundDataProvider
                                     currentFrameData.Bodies[i].CopyFromBodyTrackingSdk(frame.GetBody(i), deviceCalibration);
                                 }
 
+                                //this will give you joint precision based on index you provide
+                                //var p = currentFrameData.Bodies[0].JointPrecisions[index];
                                 // Store depth image.
                                 Capture bodyFrameCapture = frame.Capture;
                                 Image depthImage = bodyFrameCapture.Depth;

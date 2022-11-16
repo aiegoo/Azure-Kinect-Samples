@@ -1,0 +1,181 @@
+What are we doing today?
+
+first of all, I couldn't get what we did yesterday 
+
+can you go over the steps again?
+
+okay sure
+
+Cool? sure
+so let me recap. 
+
+first copy all the .dll from sdk tools folder These files are that big in size?
+yes
+They are built projects from visual studio
+
+## copy these files into the current project folder
+```
+C:\Users\pooom\Desktop\tony\repos\projects\xr\Azure-Kinect-Samples\body-tracking-samples\sample_unity_bodytracking
+```
+
+to 
+
+```
+C:\Users\pooom\Desktop\tony\repos\projects\xr\Azure-Kinect-Samples\body-tracking-samples\sample_unity_bodytracking
+```
+
+and then?
+
+And change from GPU to Cuda in SkeletalTrackingProvider.cs in the script folder of the current project
+```csharp
+ProcessingMode = TrackerProcessingMode.Cuda, SensorOrientation = SensorOrientation.Default
+```
+
+okay. and then plz?
+
+THen just start 
+Also make sure you have cuda installed 
+okay. that's the question I asked you about.. you said you would change the version number correctly in the project.cofnig.
+
+can you show me?
+
+ohh yes
+
+So just change the versionmatching the sdk of body tracking you install
+
+please wait
+
+Find the version number from the install file (Azure Kinect Body Tracking SDK 1.1.1.msi)
+and find the file package.config in this path(C:\Users\pooom\Desktop\Azure-Kinect-Samples\body-tracking-samples\sample_unity_bodytracking)
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<packages>
+  <package id="Microsoft.Azure.Kinect.BodyTracking" version="1.1.1" targetFramework="net471" />
+  <package id="Microsoft.Azure.Kinect.BodyTracking.Dependencies" version="0.9.1" targetFramework="net471" />
+  <package id="Microsoft.Azure.Kinect.BodyTracking.Dependencies.cuDNN" version="0.9.1" targetFramework="net471" />
+  <package id="Microsoft.Azure.Kinect.BodyTracking.ONNXRuntime" version="1.10.0" targetFramework="net471" />
+  <package id="Microsoft.Azure.Kinect.Sensor" version="1.4.1" targetFramework="net471" />
+  <package id="System.Buffers" version="4.4.0" targetFramework="net471" />
+  <package id="System.Memory" version="4.5.3" targetFramework="net471" />
+  <package id="System.Numerics.Vectors" version="4.5.0" targetFramework="net471" />
+  <package id="System.Reflection.Emit.Lightweight" version="4.6.0" targetFramework="net471" />
+  <package id="System.Runtime.CompilerServices.Unsafe" version="4.5.2" targetFramework="net471" />
+</packages>
+```
+
+Originalll the version number of this file was `version ='1.0.1' ` it was changed to 1.1.1 to match the number of the install msi.
+
+
+Am I getting this right?
+
+
+yes and ?
+are these all?
+
+There are two more steps
+I will give you the full lstep by step list in a file ----> that's most wonderful. Yesterday, I missed so much. I am grateful for this.
+
+No problem, i'll share it by tmrw
+
+Whats next?
+
+Getting the api of sdk in Unity. You forgot this.
+JointIDs and jointConfidenceLevel etc.
+I will need these api data in streaming so that I can use them to develop
+
+
+okay
+I have opened up more space
+
+Okay
+
+change this file SkeletalTrackingProvider.cs like 
+```
+ //this will give you joint precision based on index you provide
+                                //var p = currentFrameData.Bodies[0].JointPrecisions[index];
+                                // Store depth image.
+```
+
+wait. this indexes will only give joint ids.. 
+
+basisJointMap
+parentJointMap
+
+these two provide joint ids and joint precision will provide you with levels of precision from High to Low
+
+
+The image below shows the stickman in Unity, which is like Puppetmaster. Stickman is the avatar and it displays the joint id and depth data(xyz)
+In the console or debugging component, can I display them ?
+
+Yes you can but you'll have to write your own script for that, yeah.. well Debug() for the map data?
+
+Yeah something like taht but you'll have to structure the data 
+Let me show you what I meant.. when you have a model to match the player motion, you need to map the model's joint to the player jointids so that it becomes the player's avartar
+
+I am trying to map the player motion to the model's... 
+
+I got that, you'll have to that through jointid vector3 and orientation.. which means, I use the script in trackigprovider and trackerhandler?
+
+ or you can make your own script using that as reference
+
+wait.. plz. here  can I utilize this file? so that I can get the streaming feed like in viewer.exe?
+
+Seems like it but you'll have to change it for azure kinet, i think this is for kinect v2 only
+
+cam we try this when I get the v2 Kinect?
+
+
+
+Sorry but I Can help you connect it with windows and let youknow how to get joint id and precision data
+you can try and i might help you for a bit though. okay
+
+Let me try to get the stickman working on your example project
+
+sure
+I will wait for your instruction file for steps to implement connecting the device to Unity
+yes, will send you in an hour or so
+
+Thanks
+see you in a bit then
+
+Will send the document
+let me know when to connect next 
+bye
+
+what do you mean? when to connect next?
+do you have more work form me? Ubuntu? and kinectv2
+kinectv2 is for windows ONLY?
+yes
+how does that go? do you want to resume that part after Ubuntu?
+however you are comfortable 
+if you have kinect v2 right now, i can start right away.. no.. I didn't ask theokay then ubuntu tmrw maybe
+I will get the pc ready with ubuntu 18.04
+
+I will ping you. do you have timeframe for tomorrow?
+
+won't be available between 5-8, IST pm 
+right?
+yes? 5-8pm IST right?
+yes noted I will ping you tomorrow as soon as the pc is ready
+
+see you then. I will try to implement the steps.. in the meantime as well.
+
+good night
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
